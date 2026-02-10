@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <title>VideoMax AI | Spatial Interface</title>
+    <script defer src="script.js"></script>
+  </head>
+  <body class="text-slate-400">
+    <div class="top-mask"></div>
+
+    <nav
+      id="main-nav"
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-5xl"
+    >
+      <div
+        class="bg-black/60 backdrop-blur-xl border border-white/10 rounded-full px-4 md:px-6 py-2 md:py-3 flex justify-between items-center shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+      >
+        <div class="flex items-center gap-3">
+          <div class="group relative">
+            <div
+              class="absolute inset-0 bg-red-600 rounded-full blur-md opacity-40 group-hover:opacity-100 transition duration-500"
+            ></div>
+            <div
+              class="relative w-8 h-8 md:w-9 md:h-9 bg-red-600 rounded-full flex items-center justify-center border border-white/20"
+            >
+              <i class="fas fa-shuttle-space text-white text-xs"></i>
+            </div>
+          </div>
+          <span
+            class="text-white text-sm font-black tracking-tighter uppercase italic"
+          >
+            V-Max
+            <span class="text-red-500 underline decoration-2 underline-offset-4"
+              >AI</span
+            >
+          </span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-10">
+          <a
+            href="#home"
+            class="nav-link active relative text-[10px] font-black uppercase tracking-[0.3em] transition-all py-1"
+          >
+            Home
+            <span
+              class="nav-indicator absolute -bottom-1 left-0 w-0 h-[2px] bg-red-500 shadow-[0_0_10px_#ef4444] transition-all duration-300"
+            ></span>
+          </a>
+          <a
+            href="#features"
+            class="nav-link relative text-[10px] font-black uppercase tracking-[0.3em] transition-all py-1"
+          >
+            Features
+            <span
+              class="nav-indicator absolute -bottom-1 left-0 w-0 h-[2px] bg-red-500 shadow-[0_0_10px_#ef4444] transition-all duration-300"
+            ></span>
+          </a>
+          <a
+            href="#process"
+            class="nav-link relative text-[10px] font-black uppercase tracking-[0.3em] transition-all py-1"
+          >
+            Process
+            <span
+              class="nav-indicator absolute -bottom-1 left-0 w-0 h-[2px] bg-red-500 shadow-[0_0_10px_#ef4444] transition-all duration-300"
+            ></span>
+          </a>
+          <a
+            href="#about"
+            class="nav-link relative text-[10px] font-black uppercase tracking-[0.3em] transition-all py-1"
+          >
+            About
+            <span
+              class="nav-indicator absolute -bottom-1 left-0 w-0 h-[2px] bg-red-500 shadow-[0_0_10px_#ef4444] transition-all duration-300"
+            ></span>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-2 md:gap-4">
+          <div
+            class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
+            ></span>
+            <span
+              class="text-[9px] font-bold text-emerald-500 uppercase tracking-widest hidden sm:block"
+              >System Online</span
+            >
+          </div>
+
+          <button
+            onclick="toggleMobileMenu()"
+            class="md:hidden text-white p-2 hover:text-red-500 transition-colors"
+          >
+            <i id="menu-icon" class="fas fa-bars-staggered"></i>
+          </button>
+
+          <button
+            class="hidden md:block text-slate-400 hover:text-white transition-all hover:scale-110"
+          >
+            <i class="fas fa-circle-user text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden absolute top-16 left-0 right-0 bg-black/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 shadow-2xl md:hidden animate-[fadeIn_0.2s_ease-out]"
+      >
+        <div id="mobile-nav-links" class="flex flex-col gap-4">
+          <a
+            href="#home"
+            onclick="handleNavLinkClick(this)"
+            class="nav-link text-[10px] font-black uppercase tracking-[0.4em] text-white p-3 border-b border-white/5 flex justify-between items-center"
+          >
+            Home
+            <i
+              class="fas fa-chevron-right text-[8px] text-red-500 transition-colors duration-300"
+            ></i>
+          </a>
+
+          <a
+            href="#features"
+            onclick="handleNavLinkClick(this)"
+            class="nav-link text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 p-3 border-b border-white/5 flex justify-between items-center"
+          >
+            Features
+            <i
+              class="fas fa-chevron-right text-[8px] text-slate-600 transition-colors duration-300"
+            ></i>
+          </a>
+
+          <a
+            href="#process"
+            onclick="handleNavLinkClick(this)"
+            class="nav-link text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 p-3 flex justify-between items-center"
+          >
+            Process
+            <i
+              class="fas fa-chevron-right text-[8px] text-slate-600 transition-colors duration-300"
+            ></i>
+          </a>
+          <a
+            href="#about"
+            onclick="handleNavLinkClick(this)"
+            class="nav-link text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 p-3 flex justify-between items-center"
+          >
+            About
+            <i
+              class="fas fa-chevron-right text-[8px] text-slate-600 transition-colors duration-300"
+            ></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="min-h-screen w-full flex flex-col items-center relative">
+      <div
+        id="home"
+        class="min-h-screen flex flex-col items-center justify-center w-full bg-[#050505] selection:bg-red-500/30"
+      >
+        <div class="mb-12 text-center group">
+          <div
+            class="inline-block p-[1px] rounded-full bg-gradient-to-r from-transparent via-red-500 to-transparent mb-6 animate-pulse"
+          >
+            <div
+              class="px-5 py-1.5 bg-black rounded-full text-[9px] font-black tracking-[0.4em] text-red-500 uppercase"
+            >
+              Neural Engine Active
+            </div>
+          </div>
+          <h1
+            class="text-white text-5xl md:text-6xl font-light tracking-tighter transition-all duration-700 group-hover:tracking-normal"
+          >
+            Video<span class="font-extrabold italic">Max</span
+            ><span
+              class="text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]"
+              >AI</span
+            >
+          </h1>
+        </div>
+
+        <div class="w-full max-w-2xl px-6 mb-12">
+          <div class="relative group">
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-[2.5rem] blur opacity-25 group-focus-within:opacity-50 transition duration-1000"
+            ></div>
+
+            <div
+              class="relative flex flex-col md:flex-row gap-2 p-2 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-[2.5rem]"
+            >
+              <div class="flex-1 flex items-center px-6 py-4">
+                <svg
+                  class="w-5 h-5 text-red-500 mr-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  ></path>
+                </svg>
+                <input
+                  id="videoUrl"
+                  type="text"
+                  placeholder="Paste source protocol URL..."
+                  class="w-full bg-transparent text-white focus:outline-none placeholder:text-slate-600 font-light tracking-wide text-base md:text-sm"
+                />
+              </div>
+              <button
+                onclick="fetchVideo()"
+                id="fetchBtn"
+                class="bg-red-600 hover:bg-red-500 text-white px-10 py-4 rounded-[2rem] font-black text-xs uppercase tracking-widest transition-all hover:shadow-[0_0_25px_rgba(239,68,68,0.4)] active:scale-95"
+              >
+                Initialize
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="result"
+          class="hidden w-full max-w-4xl px-6 animate-[fadeIn_0.6s_ease-out]"
+        >
+          <div
+            class="bg-[#0f0f0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row"
+          >
+            <div class="md:w-1/2 relative group overflow-hidden bg-black">
+              <img
+                id="thumb"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-80"
+                src=""
+                alt="Media Node"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent md:bg-gradient-to-r"
+              ></div>
+
+              <div class="absolute bottom-8 left-8">
+                <div
+                  id="durationTag"
+                  class="backdrop-blur-md bg-white/10 border border-white/20 text-[10px] font-bold text-white px-4 py-1.5 rounded-full uppercase tracking-[0.2em]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+              <h2
+                id="title"
+                class="text-2xl font-light text-white mb-8 leading-tight tracking-tight border-l-2 border-red-500 pl-6"
+              ></h2>
+
+              <div class="space-y-6">
+                <div class="group relative">
+                  <label
+                    class="text-[10px] font-bold uppercase tracking-[0.2em] text-red-500/90 mb-2 block ml-1"
+                  >
+                    Select Resolution
+                  </label>
+
+                  <div class="relative">
+                    <select
+                      id="qualitySelect"
+                      class="w-full bg-[#1a1a1a] border border-white/20 p-4 rounded-xl text-white text-sm font-medium focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500/50 appearance-none cursor-pointer transition-all duration-300 group-hover:bg-[#222]"
+                    >
+                      <option class="bg-[#1a1a1a]">1080p (Pure Bitrate)</option>
+                      <option class="bg-[#1a1a1a]">
+                        720p (Neural Optimized)
+                      </option>
+                      <option class="bg-[#1a1a1a]">
+                        480p (Efficiency Mode)
+                      </option>
+                    </select>
+
+                    <div
+                      class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-white/50 group-hover:text-red-500 transition-colors"
+                    >
+                      <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 9l-7 7-7-7"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  id="downloadBtn"
+                  class="group relative tracking-[0.3em] hover:bg-red-600 hover:text-white transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] active:scale-[0.98] overflow-hidden w-full bg-white text-black py-5 rounded-xl font-black text-[11px] uppercase tracking-[0.4em] shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-[0.98] disabled:opacity-100 disabled:cursor-wait"
+                >
+                  <div
+                    id="btnProgress"
+                    class="absolute inset-y-0 left-0 bg-red-600 transition-all duration-700 w-0"
+                  ></div>
+
+                  <div
+                    id="btnContent"
+                    class="relative z-10 flex flex-col items-center justify-center gap-1"
+                  >
+                    <div class="flex items-center gap-3">
+                      <i
+                        id="btnIcon"
+                        class="fas fa-arrow-down-to-bracket text-xs"
+                      ></i>
+                      <span id="btnText">Execute Extraction</span>
+                    </div>
+                    <span
+                      id="btnTelemetry"
+                      class="hidden text-[8px] font-mono opacity-60 tracking-widest lowercase"
+                    >
+                      00.0mb / 00.0mb
+                    </span>
+                  </div>
+                </button>
+
+                <p
+                  class="text-center text-[9px] text-slate-500 uppercase tracking-widest animate-pulse"
+                >
+                  Ready for Uplink...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full max-w-5xl mt-16 px-6 overflow-hidden">
+        <div class="flex items-center gap-4 mb-10 justify-center opacity-40">
+          <div
+            class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+          ></div>
+          <p
+            class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-400 whitespace-nowrap"
+          >
+            Integrated Node Network
+          </p>
+          <div
+            class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+          ></div>
+        </div>
+
+        <div class="relative group">
+          <div
+            class="absolute inset-0 bg-white/[0.02] border-y border-white/5 backdrop-blur-3xl rounded-2xl"
+          ></div>
+
+          <div class="relative flex overflow-x-hidden py-12">
+            <div
+              class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent z-10 pointer-events-none"
+            ></div>
+            <div
+              class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#050505] via-[#050505]/90 to-transparent z-10 pointer-events-none"
+            ></div>
+
+            <div
+              class="flex gap-24 items-center animate-scroll group-hover:pause"
+            >
+              <div class="flex gap-24 items-center shrink-0">
+                <div class="brand-item">
+                  <i class="fab fa-youtube mr-2"></i>YouTube
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-adobe mr-2"></i>Adobe
+                </div>
+                <div class="brand-item">
+                  <span class="font-black tracking-tighter">SONY</span>
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-vimeo-v mr-2"></i>Vimeo
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-netflix mr-2"></i>Netflix
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-amazon mr-2"></i>Amazon
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-twitch mr-2"></i>Twitch
+                </div>
+              </div>
+              <div class="flex gap-24 items-center shrink-0">
+                <div class="brand-item">
+                  <i class="fab fa-youtube mr-2"></i>YouTube
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-adobe mr-2"></i>Adobe
+                </div>
+                <div class="brand-item">
+                  <span class="font-black tracking-tighter">SONY</span>
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-vimeo-v mr-2"></i>Vimeo
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-netflix mr-2"></i>Netflix
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-amazon mr-2"></i>Amazon
+                </div>
+                <div class="brand-item">
+                  <i class="fab fa-twitch mr-2"></i>Twitch
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="features" class="w-full max-w-6xl py-32 px-6">
+        <div class="mb-16 ml-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <span
+              class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500"
+              >Core Capabilities</span
+            >
+          </div>
+          <h2 class="text-white text-4xl font-light tracking-tighter italic">
+            System <span class="font-extrabold text-red-500">Protocols</span>
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[minmax(180px,auto)] gap-4"
+        >
+          <div
+            class="md:col-span-2 md:row-span-2 glass-panel p-10 rounded-[2.5rem] border border-white/5 relative overflow-hidden group flex flex-col justify-between"
+          >
+            <div
+              class="absolute -right-20 -top-20 w-64 h-64 bg-red-600/10 blur-[100px] group-hover:bg-red-600/20 transition-all duration-700"
+            ></div>
+
+            <div>
+              <div class="flex items-center gap-3 mb-8">
+                <div
+                  class="w-10 h-10 rounded-2xl bg-red-500/10 flex items-center justify-center border border-red-500/20"
+                >
+                  <i class="fas fa-bolt-lightning text-red-500 text-sm"></i>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-red-500/50 uppercase tracking-[0.3em]"
+                  >Protocol_FastLane</span
+                >
+              </div>
+              <h3
+                class="text-white text-3xl font-light tracking-tighter mb-4 italic"
+              >
+                Ultra-Fast <span class="font-black text-white">Extraction</span>
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                Utilizing multi-threaded
+                <span class="text-white">Neural Nodes</span> to saturate your
+                bandwidth. We bypass ISP throttling via high-speed clusters.
+              </p>
+            </div>
+
+            <div class="hidden md:flex mt-8 gap-1 items-end h-12">
+              <div
+                class="flex-1 bg-red-500/20 h-4 rounded-full animate-[pulse_2s_infinite]"
+              ></div>
+              <div
+                class="flex-1 bg-red-500/40 h-8 rounded-full animate-[pulse_1.5s_infinite]"
+              ></div>
+              <div
+                class="flex-1 bg-red-500/60 h-12 rounded-full animate-[pulse_1s_infinite]"
+              ></div>
+              <div
+                class="flex-1 bg-red-500/30 h-6 rounded-full animate-[pulse_2.5s_infinite]"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-1 glass-panel p-8 rounded-[2.5rem] border border-white/5 hover:border-purple-500/30 transition-all group"
+          >
+            <i
+              class="fas fa-wand-magic-sparkles text-purple-500 mb-6 text-xl"
+            ></i>
+            <h3 class="text-white text-lg font-black mb-2 italic">8K Native</h3>
+            <p class="text-slate-500 text-[11px] leading-relaxed">
+              No compression. We fetch raw source streams at peak resolution.
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-1 glass-panel p-8 rounded-[2.5rem] border border-white/5 hover:border-emerald-500/30 transition-all"
+          >
+            <i class="fas fa-layer-group text-emerald-500 mb-6 text-xl"></i>
+            <h3 class="text-white text-lg font-black mb-2 italic">
+              Mux Engine
+            </h3>
+            <p class="text-slate-500 text-[11px] leading-relaxed">
+              Server-side FFmpeg merging for perfect sync.
+            </p>
+          </div>
+
+          <div
+            class="md:col-span-2 glass-panel p-8 rounded-[2.5rem] border border-white/5 flex flex-col justify-between relative group overflow-hidden"
+          >
+            <div
+              class="absolute -left-10 -bottom-10 w-32 h-32 bg-blue-600/10 blur-3xl group-hover:bg-blue-600/20 transition-all"
+            ></div>
+            <div class="relative z-10 flex gap-6 items-start">
+              <div
+                class="shrink-0 w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20"
+              >
+                <i class="fa-solid fa-lock text-blue-500"></i>
+              </div>
+              <div>
+                <h3
+                  class="text-white text-xl font-black mb-2 italic uppercase tracking-tighter"
+                >
+                  Hardened Security
+                </h3>
+                <p class="text-slate-500 text-xs leading-relaxed max-w-sm">
+                  Wrapped in <span class="text-white">SSL/TLS 1.3</span>. Our
+                  stateless environment ensures your data never touches a
+                  physical disk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="process"
+        class="w-full max-w-4xl py-20 md:py-32 px-6 mx-auto relative overflow-hidden"
+      >
+        <div class="text-center mb-16 md:mb-24">
+          <div
+            class="inline-block px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-md mb-4"
+          >
+            <span
+              class="text-[9px] font-mono text-red-500 uppercase tracking-[0.4em]"
+              >Protocol_Execution_v2</span
+            >
+          </div>
+          <h2
+            class="text-white text-3xl md:text-4xl font-light tracking-tighter italic"
+          >
+            The
+            <span class="font-extrabold text-red-500">Extraction</span> Sequence
+          </h2>
+        </div>
+
+        <div class="relative">
+          <div
+            class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-red-500 via-white/10 to-transparent md:-translate-x-1/2"
+          ></div>
+
+          <div class="space-y-16 md:space-y-24">
+            <div
+              class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 group"
+            >
+              <div
+                class="md:w-1/2 md:text-right order-2 md:order-1 pl-16 md:pl-0"
+              >
+                <h4
+                  class="text-white font-black text-xl mb-2 uppercase italic tracking-tighter"
+                >
+                  01. Link Injection
+                </h4>
+                <p
+                  class="text-slate-500 text-sm leading-relaxed max-w-sm md:ml-auto"
+                >
+                  Input any media URL. Our AI immediately identifies the source
+                  host and initializes a
+                  <span class="text-white">secure handshake</span>.
+                </p>
+              </div>
+              <div
+                class="z-10 absolute left-0 md:relative md:left-auto w-12 h-12 rounded-full border border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.3)] flex items-center justify-center text-red-500 font-mono text-xs order-1 md:order-2 shrink-0 bg-[#050505]"
+              >
+                01
+              </div>
+              <div
+                class="md:w-1/2 order-3 hidden md:block opacity-20 group-hover:opacity-40 transition-opacity"
+              >
+                <span class="font-mono text-[10px] text-slate-500 uppercase"
+                  >Status: Initializing...</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 group"
+            >
+              <div
+                class="md:w-1/2 order-3 md:order-1 hidden md:block text-right opacity-20 group-hover:opacity-40 transition-opacity"
+              >
+                <span class="font-mono text-[10px] text-slate-500 uppercase"
+                  >Scanning_Packets...</span
+                >
+              </div>
+              <div
+                class="z-10 absolute left-0 md:relative md:left-auto w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white font-mono text-xs order-1 md:order-2 shrink-0 bg-[#050505] group-hover:border-red-500/50 transition-colors"
+              >
+                02
+              </div>
+              <div class="md:w-1/2 order-2 pl-16 md:pl-0">
+                <h4
+                  class="text-white font-black text-xl mb-2 uppercase italic tracking-tighter"
+                >
+                  02. Neural Scan
+                </h4>
+                <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
+                  Our nodes scan 32+ stream variants to find the
+                  <span class="text-white">purest bitrate</span> and resolution
+                  available for your device.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 group"
+            >
+              <div
+                class="md:w-1/2 md:text-right order-2 md:order-1 pl-16 md:pl-0"
+              >
+                <h4
+                  class="text-white font-black text-xl mb-2 uppercase italic tracking-tighter"
+                >
+                  03. Final Extraction
+                </h4>
+                <p
+                  class="text-slate-500 text-sm leading-relaxed max-w-sm md:ml-auto"
+                >
+                  Video and audio are
+                  <span class="text-red-500">muxed in real-time</span>. The
+                  encrypted file is delivered directly to your local node.
+                </p>
+              </div>
+              <div
+                class="z-10 absolute left-0 md:relative md:left-auto w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white font-mono text-xs order-1 md:order-2 shrink-0 bg-[#050505] group-hover:border-red-500/50 transition-colors"
+              >
+                03
+              </div>
+              <div
+                class="md:w-1/2 order-3 hidden md:block opacity-20 group-hover:opacity-40 transition-opacity"
+              >
+                <span class="font-mono text-[10px] text-slate-500 uppercase"
+                  >Process: Completed // 200 OK</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="w-full max-w-4xl py-32 px-6 snap-start">
+        <div
+          class="glass-panel border border-white/5 rounded-[3rem] p-1 bg-gradient-to-br from-white/5 to-transparent"
+        >
+          <div
+            class="bg-[#050505]/60 rounded-[2.9rem] p-12 md:p-16 overflow-hidden relative"
+          >
+            <div
+              class="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style="
+                background-image: radial-gradient(#fff 1px, transparent 1px);
+                background-size: 30px 30px;
+              "
+            ></div>
+
+            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="w-12 h-[1px] bg-red-500"></span>
+                  <span
+                    class="text-[10px] font-black uppercase tracking-[0.5em] text-red-500"
+                    >Node_Origin_2026</span
+                  >
+                </div>
+                <h3
+                  class="text-white text-4xl font-light tracking-tighter mb-6"
+                >
+                  The <span class="font-extrabold italic">Future</span> of Media
+                  <span class="text-red-500">Extraction</span>
+                </h3>
+                <div class="flex gap-4">
+                  <div
+                    class="px-3 py-1 rounded-md border border-white/10 bg-white/5 text-[9px] font-mono text-slate-400"
+                  >
+                    v.2.6.0_STABLE
+                  </div>
+                  <div
+                    class="px-3 py-1 rounded-md border border-white/10 bg-white/5 text-[9px] font-mono text-slate-400"
+                  >
+                    AES-256_ENC
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-8">
+                <p class="text-slate-400 text-sm leading-relaxed font-light">
+                  VideoMax AI dismantles the
+                  <span class="text-white font-medium"
+                    >fragmentation of the modern web</span
+                  >. We created a pure, spatial bridge between the cloud and
+                  your storage.
+                </p>
+
+                <div class="flex flex-col gap-4">
+                  <button
+                    onclick="
+                      document
+                        .getElementById('home')
+                        .scrollIntoView({ behavior: 'smooth' })
+                    "
+                    class="group relative w-full bg-red-600 hover:bg-red-500 text-white py-5 rounded-2xl overflow-hidden transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.2)] hover:shadow-[0_0_40px_rgba(239,68,68,0.4)]"
+                  >
+                    <div
+                      class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"
+                    ></div>
+
+                    <div
+                      class="relative z-10 flex items-center justify-center gap-3"
+                    >
+                      <span
+                        class="text-[11px] font-black uppercase tracking-[0.3em]"
+                        >Get Started</span
+                      >
+                      <i
+                        class="fas fa-bolt-lightning text-xs animate-pulse"
+                      ></i>
+                    </div>
+                  </button>
+
+                  <a
+                    href="#features"
+                    class="text-center text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 hover:text-white transition-colors"
+                  >
+                    Explore Protocol Specs
+                  </a>
+                </div>
+
+                <div
+                  class="pt-6 grid grid-cols-2 gap-4 border-t border-white/5"
+                >
+                  <div>
+                    <div class="text-white font-black text-lg italic">
+                      0.02s
+                    </div>
+                    <div
+                      class="text-[9px] uppercase tracking-widest text-slate-600"
+                    >
+                      Latency Core
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-white font-black text-lg italic">∞</div>
+                    <div
+                      class="text-[9px] uppercase tracking-widest text-slate-600"
+                    >
+                      Throughput
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="w-full pt-24 pb-12 px-10 relative overflow-hidden">
+        <div
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/20 to-transparent"
+        ></div>
+
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-16 border-b border-white/5"
+          >
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]"
+                ></div>
+                <span
+                  class="text-white text-xs font-black tracking-[0.2em] uppercase italic"
+                  >VideoMax <span class="text-red-500">AI</span></span
+                >
+              </div>
+              <p
+                class="text-slate-600 text-[10px] leading-relaxed uppercase tracking-widest max-w-[200px]"
+              >
+                Decentralized media extraction protocol. Zero-latency
+                reconstruction engine.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <span
+                class="text-[9px] font-mono text-slate-400 uppercase tracking-[0.4em] mb-2"
+                >Access Protocols</span
+              >
+              <div class="flex flex-wrap gap-x-8 gap-y-3">
+                <a
+                  href="#"
+                  class="text-[10px] font-bold text-slate-500 hover:text-white transition-all tracking-widest uppercase"
+                  >Encryption_Terms</a
+                >
+                <a
+                  href="#"
+                  class="text-[10px] font-bold text-slate-500 hover:text-white transition-all tracking-widest uppercase"
+                  >Node_Privacy</a
+                >
+                <a
+                  href="#"
+                  class="text-[10px] font-bold text-slate-500 hover:text-white transition-all tracking-widest uppercase"
+                  >Open_Source</a
+                >
+              </div>
+            </div>
+
+            <div class="flex flex-col md:items-end gap-4">
+              <span
+                class="text-[9px] font-mono text-slate-400 uppercase tracking-[0.4em] mb-2"
+                >Signal_Outlets</span
+              >
+              <div class="flex gap-6 text-slate-500 text-sm">
+                <a href="#" class="hover:text-red-500 transition-colors"
+                  ><i class="fab fa-github"></i
+                ></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" class="hover:text-pink-500 transition-colors"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col md:flex-row justify-between items-center pt-8 gap-4"
+          >
+            <div class="flex items-center gap-6">
+              <div
+                class="text-[9px] font-mono text-slate-700 uppercase tracking-widest"
+              >
+                Build: <span class="text-slate-500">v2.6.0_FINAL_X</span>
+              </div>
+              <div
+                class="text-[9px] font-mono text-slate-700 uppercase tracking-widest"
+              >
+                Server: <span class="text-slate-500">Global_Node_01</span>
+              </div>
+            </div>
+
+            <div
+              class="text-[10px] font-black text-slate-500 tracking-[0.5em] uppercase"
+            >
+              &copy; 2026 <span class="text-slate-300">X-CORE LABS</span> — ALL
+              RIGHTS RESERVED
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <button
+      id="backToTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="fixed bottom-10 right-10 z-[70] w-14 h-14 glass-panel border border-white/10 rounded-full flex flex-col items-center justify-center group compass-glow transition-all active:scale-90"
+    >
+      <i
+        class="fas fa-location-arrow text-red-500 -rotate-45 group-hover:-translate-y-1 transition-transform"
+      ></i>
+
+      <span
+        class="text-[7px] font-black text-slate-500 uppercase tracking-tighter mt-1 group-hover:text-white transition-colors"
+        >Top</span
+      >
+    </button>
+
+    <div
+      id="loading"
+      class="hidden fixed inset-0 z-[100] glass-panel flex flex-col items-center justify-center"
+    >
+      <div class="relative w-24 h-24 mb-6">
+        <div
+          class="absolute inset-0 border-2 border-red-600/10 rounded-full"
+        ></div>
+        <div
+          class="absolute inset-0 border-2 border-red-600 border-t-transparent rounded-full animate-spin"
+        ></div>
+        <div
+          class="absolute inset-4 border border-white/5 rounded-full animate-pulse"
+        ></div>
+      </div>
+      <p class="text-white text-[10px] font-black tracking-[0.5em] uppercase">
+        Merging Neural Streams
+      </p>
+    </div>
+
+    <div
+      id="toast-container"
+      class="fixed bottom-8 right-8 z-[200] flex flex-col gap-4 max-w-md w-[90%] pointer-events-none"
+    ></div>
+  </body>
+</html>

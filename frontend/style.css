@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input,
+textarea {
+  font-size: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Hide scrollbar for a cleaner UI */
+body::-webkit-scrollbar {
+  display: none;
+  transition: 0.5s ease-in-out;
+}
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: #050505;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Active logic for Desktop indicator */
+.nav-link.active {
+  color: white;
+}
+.fas.active {
+  color: dimgrey;
+}
+.nav-link.active .nav-indicator {
+  width: 100%;
+}
+.nav-link:not(.active) {
+  color: #94a3b8;
+}
+
+.top-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    #05050500 40%,
+    rgba(5, 5, 5, 0.366) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 55;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+main {
+  position: relative;
+  z-index: 10;
+}
+
+main section,
+div {
+  position: relative;
+  z-index: 10;
+}
+
+nav {
+  z-index: 60 !important;
+}
+
+.ai-glow {
+  box-shadow: 0 0 80px -10px #ef444426;
+  border: 1px solid #ffffff0d;
+}
+
+.glass-panel {
+  background: #121212b3;
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+}
+
+.orb {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.input-focus:focus-within {
+  border-color: #ef444480;
+  box-shadow: 0 0 20px #ef44441a;
+}
+/* Floating Compass Needle */
+#backToTop {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#backToTop.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.compass-glow {
+  box-shadow: 0 0 20px #ef444433;
+}
+#btnProgress {
+  transition: width 0.3s steps(4, end);
+}
+
+.compass-glow:hover {
+  box-shadow: 0 0 30px #ef444466;
+  border-color: #ef444480;
+}
+
+/* SVG Styling for the Cyber Theme */
+.brand-svg {
+  filter: brightness(0) invert(1) opacity(0.2); /* Makes logos pure white and transparent */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.brand-svg:hover {
+  filter: brightness(1) invert(0) drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
+  transform: scale(1.15) rotate(-2deg);
+  /* Note: To make specific logos turn red on hover, they usually require 
+       inline SVG code. Using <img> filters limits color-shifting slightly. */
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 3rem));
+  } /* Compensate for gap */
+}
+
+.animate-scroll {
+  animation: scroll 35s linear infinite;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(20%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-toast-out {
+  animation: toast-out 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+/* Add this to your style block */
+@media screen and (max-width: 768px) {
+  input {
+    font-size: 16px !important; /* Satisfies the browser */
+  }
+
+  /* If 16px looks too big, you can visually scale it back down */
+  #videoUrl {
+    transform: scale(0.875);
+    transform-origin: left center;
+    width: 115%; /* Compensate for the scale down */
+  }
+}
