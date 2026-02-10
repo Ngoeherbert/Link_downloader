@@ -1,3 +1,5 @@
+const BASE_URL = "https://link-downloader-iuzr.onrender.com";
+
 async function fetchVideo() {
   const urlInput = document.getElementById("videoUrl").value.trim();
   const resultDiv = document.getElementById("result");
@@ -13,11 +15,14 @@ async function fetchVideo() {
   resultDiv.classList.add("hidden");
 
   try {
-    const response = await fetch("http://localhost:5000/api/get-info", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: urlInput }),
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/get-info`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: urlInput }),
+      },
+    );
 
     if (!response.ok)
       throw new Error(`PROTOCOL TIMEOUT: SERVER ${response.status}`);
@@ -108,7 +113,7 @@ async function fetchVideo() {
 
      // Trigger Download (ensure variables are in scope)
      const formatId = document.getElementById("qualitySelect").value;
-     const downloadUrl = `http://localhost:5000/api/download?url=${encodeURIComponent(urlInput)}&title=${encodeURIComponent(data.title)}&formatId=${formatId}`;
+     const downloadUrl = `${BASE_URL}/api/download?url=${encodeURIComponent(urlInput)}&title=${encodeURIComponent(data.title)}&formatId=${formatId}`;
      window.location.href = downloadUrl;
 
      // 4. Clean Reset

@@ -3,7 +3,13 @@ import { spawn } from "child_process";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "link-downloader-gilt.vercel.app", // Your frontend URL
+    methods: ["GET", "POST"],
+    exposedHeaders: ["Content-Disposition"], // Important for downloads
+  }),
+);
 app.use(json());
 
 const PORT = 5000;
