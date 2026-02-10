@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "PATH=$PATH:$(pwd)/bin node server.js"
+    "start": "PATH=$PATH:$(pwd)/bin node index.js"
   },
   "dependencies": {
     "axios": "^1.13.5",
