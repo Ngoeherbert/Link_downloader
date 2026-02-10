@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 app.use(
   cors({
-    origin: "link-downloader-gilt.vercel.app", // Your frontend URL
+    origin: "https://link-downloader-gilt.vercel.app", // Your frontend URL
     methods: ["GET", "POST"],
     exposedHeaders: ["Content-Disposition"], // Important for downloads
   }),
