@@ -23,7 +23,10 @@ async function fetchVideo() {
       throw new Error(`PROTOCOL TIMEOUT: SERVER ${response.status}`);
 
     const data = await response.json();
-    if (data.error) throw new Error(data.error);
+    if (data.error) {
+      showToast(data.error);
+      return;
+    }
 
     // Update Thumb & Title
     document.getElementById("thumb").src = data.thumbnail;
