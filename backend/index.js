@@ -14,6 +14,10 @@ app.use(json());
 
 const PORT = 5000;
 
+app.get('/', (req, res) => {
+  res.send('server is running')
+})
+
 // Metadata & Quality Options Route
 app.post("/api/get-info", (req, res) => {
   const { url } = req.body;
