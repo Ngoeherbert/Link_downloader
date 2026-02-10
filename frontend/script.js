@@ -1,8 +1,5 @@
 const BASE_URL = "https://link-downloader-iuzr.onrender.com";
 
-document.body.innerHTML += `<div class="bg-black text-red-500 p-4">${err.message}</div>`;
-
-
 async function fetchVideo() {
   const urlInput = document.getElementById("videoUrl").value.trim();
   const resultDiv = document.getElementById("result");
