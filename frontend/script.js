@@ -1,4 +1,4 @@
-const BASE_URL = "https://link-downloader-iuzr.onrender.com";
+const BASE_URL = "https://link-downloader-backend.onrender.com";
 
 async function fetchVideo() {
   const urlInput = document.getElementById("videoUrl").value.trim();
