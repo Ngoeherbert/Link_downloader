@@ -4,7 +4,6 @@ import cors from "cors";
 
 const app = express();
 
-// 1. CONFIGURE CORS - Matches your Vercel URL
 app.use(
   cors({
     origin: "https://link-downloader-gilt.vercel.app",
@@ -16,9 +15,8 @@ app.use(
 
 app.use(json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
-// Health check to verify server is awake
 app.get("/", (req, res) => res.send("Media Engine: Operational"));
 
 // Metadata Route
@@ -26,7 +24,15 @@ app.post("/api/get-info", (req, res) => {
   const { url } = req.body;
   if (!url) return res.status(400).json({ error: "URL is required" });
 
-  const ytDlp = spawn("yt-dlp", ["-j", "--no-warnings", url]);
+  // OPTION 1: Using the Android Client trick to bypass bot detection
+  const ytDlp = spawn("yt-dlp", [
+    "--extractor-args",
+    "youtube:player_client=android,web",
+    "-j",
+    "--no-warnings",
+    url,
+  ]);
+
   let output = "";
   let errorOutput = "";
 
@@ -76,6 +82,8 @@ app.get("/api/download", (req, res) => {
   res.setHeader("Content-Type", "video/mp4");
 
   const ytDlp = spawn("yt-dlp", [
+    "--extractor-args",
+    "youtube:player_client=android,web",
     "-f",
     `${formatId}+bestaudio[ext=m4a]/bestvideo+bestaudio/best`,
     "--merge-output-format",
