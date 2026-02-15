@@ -4,13 +4,13 @@ import cors from "cors";
 
 const app = express();
 
-// 1. CONFIGURE CORS
+// 1. CONFIGURE CORS - Matches your Vercel URL
 app.use(
   cors({
-    origin: "https://link-downloader-gilt.vercel.app", // EXACT origin (no trailing slash)
+    origin: "https://link-downloader-gilt.vercel.app",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Content-Disposition"], // Allows frontend to see filename
+    exposedHeaders: ["Content-Disposition"],
   }),
 );
 
@@ -18,7 +18,7 @@ app.use(json());
 
 const PORT = process.env.PORT || 5000;
 
-// Health check
+// Health check to verify server is awake
 app.get("/", (req, res) => res.send("Media Engine: Operational"));
 
 // Metadata Route
@@ -28,10 +28,18 @@ app.post("/api/get-info", (req, res) => {
 
   const ytDlp = spawn("yt-dlp", ["-j", "--no-warnings", url]);
   let output = "";
+  let errorOutput = "";
+
   ytDlp.stdout.on("data", (data) => (output += data));
+  ytDlp.stderr.on("data", (data) => (errorOutput += data));
 
   ytDlp.on("close", (code) => {
-    if (code !== 0) return res.status(500).json({ error: "Media Node Failed" });
+    if (code !== 0) {
+      console.error("yt-dlp error output:", errorOutput);
+      return res
+        .status(500)
+        .json({ error: "Media Node Failed", details: errorOutput });
+    }
     try {
       const videoData = JSON.parse(output);
       const formats = videoData.formats

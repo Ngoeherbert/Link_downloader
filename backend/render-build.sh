@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
-# exit on error
 set -o errexit
 
-# 1. Install Node.js dependencies
+# Install Node dependencies
 npm install
 
-# 2. Create a folder to hold our tools
+# Create bin folder for the engine
 mkdir -p bin
 
-# 3. Download the Linux version of yt-dlp
-curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux -o bin/yt-dlp
+# Download the latest Linux binary
+echo "Downloading yt-dlp..."
+curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o bin/yt-dlp
 
-# 4. Give the server permission to run the tool
+# Set permissions
 chmod a+rx bin/yt-dlp
 
-echo "Build complete: yt-dlp is installed and executable."
+# Verify version in build logs
+echo "Verifying Engine Version:"
+./bin/yt-dlp --version
