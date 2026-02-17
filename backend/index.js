@@ -15,19 +15,30 @@ app.use(
 
 app.use(json());
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
+
+// PASTE YOUR NEW TOKENS HERE
+const GUEST_PO_TOKEN = "MniYtBsQESfngpiIFK2YylwfzRN__UkjMAze6KeOsH0-nl1Vzq7jXEF7L_y5v06xcXrltwHjAQgh5ugKM6QHAgx-SDODpfjOvR0Cx3ziFS9bHP17LzeuyoJan81zQ-_oFJM56ZQH7PMDchGG-g3Jx85vsCn63kHkWHE=";
+const VISITOR_DATA = "CgtieGtURmtVajZaayiZ48XMBjIKCgJDTRIEGgAgZQ%3D%3D";
+
+const getExtractorArgs = () => {
+  if (GUEST_PO_TOKEN && VISITOR_DATA) {
+    // Standard format for 2026: tells yt-dlp to use the tokens with the web client
+    return `Youtubeer_client=web,default;po_token=${GUEST_PO_TOKEN};visitor_data=${VISITOR_DATA}`;
+  }
+  return "youtube:player_client=android,web";
+};
 
 app.get("/", (req, res) => res.send("Media Engine: Operational"));
 
 // Metadata Route
-app.post("/api/get-info", (req, res) => {
+app.get("/api/get-info", (req, res) => {
   const { url } = req.body;
   if (!url) return res.status(400).json({ error: "URL is required" });
 
-  // OPTION 1: Using the Android Client trick to bypass bot detection
   const ytDlp = spawn("yt-dlp", [
     "--extractor-args",
-    "youtube:player_client=android,web",
+    getExtractorArgs(),
     "-j",
     "--no-warnings",
     url,
@@ -83,7 +94,7 @@ app.get("/api/download", (req, res) => {
 
   const ytDlp = spawn("yt-dlp", [
     "--extractor-args",
-    "youtube:player_client=android,web",
+    getExtractorArgs(),
     "-f",
     `${formatId}+bestaudio[ext=m4a]/bestvideo+bestaudio/best`,
     "--merge-output-format",
